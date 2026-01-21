@@ -68,7 +68,7 @@ export const TrackMyRTI: React.FC = () => {
         setFormData({ applicationNo: '', emailId: '' });
         setSubmitStatus('idle');
       }, 3000);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error tracking RTI application:', error);
       setSubmitStatus('error');
     } finally {

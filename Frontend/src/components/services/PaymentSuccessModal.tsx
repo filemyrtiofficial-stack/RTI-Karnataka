@@ -8,17 +8,11 @@ import React from 'react';
 interface PaymentSuccessModalProps {
   isOpen: boolean;
   onClose: () => void;
-  applicationId: string | number;
-  paymentId: string;
-  serviceName?: string;
 }
 
 export const PaymentSuccessModal: React.FC<PaymentSuccessModalProps> = ({
   isOpen,
-  onClose,
-  applicationId: _applicationId,
-  paymentId: _paymentId,
-  serviceName: _serviceName
+  onClose
 }) => {
   if (!isOpen) return null;
 

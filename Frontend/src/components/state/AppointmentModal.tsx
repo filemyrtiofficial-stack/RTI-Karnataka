@@ -139,7 +139,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
       } else {
         throw new Error('Failed to submit appointment');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (import.meta.env.DEV) {
         console.error('❌ Failed to submit appointment:', error);
       }

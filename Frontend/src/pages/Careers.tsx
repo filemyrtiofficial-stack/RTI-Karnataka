@@ -306,7 +306,7 @@ export const Careers: React.FC = () => {
           setSubmitStatus('idle');
         }, 5000);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error submitting application:', error);
       setSubmitStatus('error');
 

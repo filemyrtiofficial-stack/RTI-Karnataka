@@ -19,13 +19,14 @@ const AboutFileMyRTIComponent: React.FC = () => {
       }
     );
 
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
+    const currentElement = videoRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
     }
 
     return () => {
-      if (videoRef.current) {
-        observer.unobserve(videoRef.current);
+      if (currentElement) {
+        observer.unobserve(currentElement);
       }
     };
   }, []);

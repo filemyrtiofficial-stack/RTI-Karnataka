@@ -82,7 +82,7 @@ export const StatePage: React.FC = () => {
 
   // Render appropriate hero component based on design theme
   const renderHero = () => {
-    return <StateHero hero={dataToUse.hero} stateName={dataToUse.name} stateSlug={dataToUse.slug} />;
+    return <StateHero stateName={dataToUse.name} stateSlug={dataToUse.slug} />;
   };
 
   // SEO Metadata - use current data
@@ -132,7 +132,7 @@ export const StatePage: React.FC = () => {
   const faqStructuredData = dataToUse.faqs && dataToUse.faqs.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": dataToUse.faqs.map((faq: any) => ({
+    "mainEntity": dataToUse.faqs.map((faq: unknown) => ({
       "@type": "Question",
       "name": faq.question || faq.q,
       "acceptedAnswer": {

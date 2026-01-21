@@ -43,13 +43,14 @@ export const LazyImage: React.FC<LazyImageProps> = ({
       }
     );
 
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
+    const currentElement = imgRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
     }
 
     return () => {
-      if (imgRef.current) {
-        observer.unobserve(imgRef.current);
+      if (currentElement) {
+        observer.unobserve(currentElement);
       }
     };
   }, [loading]);

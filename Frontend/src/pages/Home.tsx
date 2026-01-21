@@ -15,11 +15,9 @@ const KarnatakaTestimonialsSection = lazy(() => import('../components/karnataka/
 const KarnatakaWhySection = lazy(() => import('../components/karnataka/KarnatakaWhySection').then(m => ({ default: m.KarnatakaWhySection })));
 const KarnatakaClientsSection = lazy(() => import('../components/karnataka/KarnatakaClientsSection').then(m => ({ default: m.KarnatakaClientsSection })));
 const KarnatakaRTIPortalSection = lazy(() => import('../components/karnataka/KarnatakaRTIPortalSection').then(m => ({ default: m.KarnatakaRTIPortalSection })));
-const KarnatakaFeaturedSection = lazy(() => import('../components/karnataka/KarnatakaFeaturedSection').then(m => ({ default: m.KarnatakaFeaturedSection })));
 const KarnatakaGuidesSection = lazy(() => import('../components/karnataka/KarnatakaGuidesSection').then(m => ({ default: m.KarnatakaGuidesSection })));
 const KarnatakaDepartmentsSection = lazy(() => import('../components/karnataka/KarnatakaDepartmentsSection').then(m => ({ default: m.KarnatakaDepartmentsSection })));
 const KarnatakaFinalCTASection = lazy(() => import('../components/karnataka/KarnatakaFinalCTASection').then(m => ({ default: m.KarnatakaFinalCTASection })));
-const KarnatakaConsultationCTA = lazy(() => import('../components/karnataka/KarnatakaConsultationCTA').then(m => ({ default: m.KarnatakaConsultationCTA })));
 const KarnatakaFAQ = lazy(() => import('../components/karnataka/KarnatakaFAQ').then(m => ({ default: m.KarnatakaFAQ })));
 
 // ComponentLoader removed - using inline placeholders for better performance
@@ -175,7 +173,7 @@ export const Home: React.FC = () => {
               </div>
             </div>
           }>
-            <KarnatakaHero stateName={dataToUse.name} />
+            <KarnatakaHero />
           </Suspense>
 
           {/* Section C - Trust Strip */}

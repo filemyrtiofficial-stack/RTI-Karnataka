@@ -47,10 +47,10 @@ const FooterComponent: React.FC = () => {
         setSubmitStatus('error');
         setSubmitMessage(result.message || 'Something went wrong. Please try again.');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error subscribing to newsletter:', error);
       setSubmitStatus('error');
-      setSubmitMessage(error.message || 'Failed to subscribe. Please try again later.');
+      setSubmitMessage((error as Error)?.message || 'Failed to subscribe. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }

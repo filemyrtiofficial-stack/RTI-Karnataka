@@ -5,7 +5,7 @@ import { karnatakaDepartments } from '../../data/karnatakaDepartments';
 
 // Telangana departments organized in columns (similar to the original Delhi layout)
 // Export for use in other components
-export const telanganaDepartments = [
+const telanganaDepartments = [
   {
     category: 'RTI Telangana Police & Security',
     items: [

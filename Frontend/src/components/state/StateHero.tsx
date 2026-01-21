@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, memo, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { StateHero as StateHeroData } from '../../data/states';
 import { AppointmentModal } from './AppointmentModal';
 // Lazy load non-critical components to improve LCP
 const PublicAuthoritiesList = lazy(() => import('./PublicAuthoritiesList').then(m => ({ default: m.PublicAuthoritiesList })));
@@ -30,10 +29,8 @@ const fadeInStyle = `
 `;
 
 interface StateHeroProps {
-  hero: StateHeroData;
   stateName: string;
   stateSlug: string;
-  departments?: string[];
 }
 
 interface Testimonial {
@@ -180,7 +177,7 @@ const TestimonialsCarousel: React.FC = () => {
   );
 };
 
-const StateHeroComponent: React.FC<StateHeroProps> = ({ hero: _hero, stateName, stateSlug: _stateSlug, departments: _departments }) => {
+const StateHeroComponent: React.FC<StateHeroProps> = ({ stateName, stateSlug }) => {
   const navigate = useNavigate();
   const [callbackPhone, setCallbackPhone] = useState('');
   const [consultationForm, setConsultationForm] = useState({
@@ -293,7 +290,7 @@ const StateHeroComponent: React.FC<StateHeroProps> = ({ hero: _hero, stateName, 
 
       const result = await callbackRequestsAPI.createPublic({
         phone: phone,
-        state_slug: _stateSlug || undefined
+        state_slug: stateSlug || undefined
       });
 
       if (result && typeof result === 'object' && 'success' in result && result.success) {
@@ -308,14 +305,14 @@ const StateHeroComponent: React.FC<StateHeroProps> = ({ hero: _hero, stateName, 
       } else {
         throw new Error('Failed to submit callback request');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (import.meta.env.DEV) {
         console.error('❌ Failed to submit callback request:', error);
       }
       setCallbackStatus('error');
       if (error instanceof Error) {
         setCallbackError(error.message || 'Failed to submit. Please try again.');
-      } else if (error?.message) {
+      } else if ((error as any)?.message) {
         setCallbackError(error.message);
       } else {
         setCallbackError('Failed to submit callback request. Please try again.');
@@ -385,7 +382,7 @@ const StateHeroComponent: React.FC<StateHeroProps> = ({ hero: _hero, stateName, 
         mobile: mobile,
         address: address || null, // Optional
         pincode: pinCode || null, // Optional
-        state_slug: _stateSlug || undefined,
+        state_slug: stateSlug || undefined,
         source: 'hero_section'
       });
 
@@ -396,7 +393,7 @@ const StateHeroComponent: React.FC<StateHeroProps> = ({ hero: _hero, stateName, 
       } else {
         throw new Error('Failed to submit consultation');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (import.meta.env.DEV) {
         console.error('❌ Failed to submit consultation:', error);
       }
@@ -406,11 +403,11 @@ const StateHeroComponent: React.FC<StateHeroProps> = ({ hero: _hero, stateName, 
       let errorMessage = 'Failed to submit consultation. Please try again.';
       if (error instanceof Error) {
         errorMessage = error.message;
-      } else if (error?.message) {
-        errorMessage = error.message;
-      } else if (error?.errors && Array.isArray(error.errors)) {
+      } else if ((error as any)?.message) {
+        errorMessage = (error as any).message;
+      } else if ((error as any)?.errors && Array.isArray((error as any).errors)) {
         // Handle validation errors from API
-        const validationErrors = error.errors.map((err: any) => `${err.field}: ${err.message}`).join(', ');
+        const validationErrors = (error as any).errors.map((err: unknown) => `${(err as any).field}: ${(err as any).message}`).join(', ');
         errorMessage = validationErrors;
       }
       setConsultationErrorMessage(errorMessage);
@@ -929,7 +926,7 @@ const StateHeroComponent: React.FC<StateHeroProps> = ({ hero: _hero, stateName, 
       <AppointmentModal
         isOpen={isAppointmentModalOpen}
         onClose={() => setIsAppointmentModalOpen(false)}
-        stateSlug={_stateSlug}
+        stateSlug={stateSlug}
       />
     </>
   );

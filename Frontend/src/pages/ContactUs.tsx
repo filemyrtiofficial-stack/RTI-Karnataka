@@ -114,7 +114,7 @@ export const ContactUs: React.FC = () => {
           setSubmitStatus('idle');
         }, 5000);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error submitting contact form:', error);
       setSubmitStatus('error');
 

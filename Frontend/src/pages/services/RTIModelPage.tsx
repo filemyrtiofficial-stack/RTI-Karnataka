@@ -154,7 +154,7 @@ export const RTIModelPage: React.FC = () => {
       try {
         const statesResponse = await statesAPI.getAll() as any;
         if (statesResponse?.success && Array.isArray(statesResponse?.data)) {
-          const telanganaState = statesResponse.data.find((s: any) => s.slug === 'telangana');
+          const telanganaState = statesResponse.data.find((s: unknown) => (s as any).slug === 'telangana');
           if (telanganaState?.id) {
             stateId = Number(telanganaState.id);
             console.log(`✅ Found state ID: ${stateId} for Telangana`);
@@ -224,7 +224,7 @@ export const RTIModelPage: React.FC = () => {
         if ('errors' in error && Array.isArray((error as any).errors)) {
           const apiError = error as any;
           validationDetails = '\n\nValidation Errors:\n' +
-            apiError.errors.map((err: any) => `• ${err.field}: ${err.message}`).join('\n');
+            apiError.errors.map((err: unknown) => `• ${(err as any).field}: ${(err as any).message}`).join('\n');
         }
       }
 
@@ -305,7 +305,7 @@ export const RTIModelPage: React.FC = () => {
       try {
         const statesResponse = await statesAPI.getAll() as any;
         if (statesResponse?.success && Array.isArray(statesResponse?.data)) {
-          const telanganaState = statesResponse.data.find((s: any) => s.slug === 'telangana');
+          const telanganaState = statesResponse.data.find((s: unknown) => (s as any).slug === 'telangana');
           if (telanganaState?.id) {
             stateId = Number(telanganaState.id);
             console.log(`✅ Found state ID: ${stateId} for Telangana`);
@@ -378,7 +378,7 @@ export const RTIModelPage: React.FC = () => {
         if ('errors' in error && Array.isArray((error as any).errors)) {
           const apiError = error as any;
           validationDetails = '\n\nValidation Errors:\n' +
-            apiError.errors.map((err: any) => `• ${err.field}: ${err.message}`).join('\n');
+            apiError.errors.map((err: unknown) => `• ${(err as any).field}: ${(err as any).message}`).join('\n');
         }
       }
 
@@ -729,9 +729,6 @@ export const RTIModelPage: React.FC = () => {
           <PaymentSuccessModal
             isOpen={isSuccessModalOpen}
             onClose={handleSuccessModalClose}
-            applicationId={successData.applicationId}
-            paymentId={successData.paymentId}
-            serviceName={model?.name}
           />
         )}
       </div>
