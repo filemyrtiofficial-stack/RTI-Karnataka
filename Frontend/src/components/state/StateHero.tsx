@@ -313,7 +313,7 @@ const StateHeroComponent: React.FC<StateHeroProps> = ({ stateName, stateSlug }) 
       if (error instanceof Error) {
         setCallbackError(error.message || 'Failed to submit. Please try again.');
       } else if ((error as any)?.message) {
-        setCallbackError(error.message);
+        setCallbackError((error as any).message);
       } else {
         setCallbackError('Failed to submit callback request. Please try again.');
       }

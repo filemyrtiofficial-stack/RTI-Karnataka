@@ -311,7 +311,7 @@ export const Careers: React.FC = () => {
       setSubmitStatus('error');
 
       // Show error message with details
-      const errorMsg = error.message || 'Failed to submit application. Please try again.';
+      const errorMsg = (error as Error)?.message || 'Failed to submit application. Please try again.';
       console.error('Error details:', errorMsg);
 
       // Show error message for 5 seconds

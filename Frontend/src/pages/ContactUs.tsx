@@ -124,9 +124,9 @@ export const ContactUs: React.FC = () => {
       }, 5000);
 
       // Show specific error message if available
-      if (error.errors && error.errors.length > 0) {
+      if ((error as any).errors && (error as any).errors.length > 0) {
         const fieldErrors: Record<string, string> = {};
-        error.errors.forEach((err: { field: string; message: string }) => {
+        (error as any).errors.forEach((err: { field: string; message: string }) => {
           // Map backend field names to frontend field names
           if (err.field === 'firstName') {
             fieldErrors.firstName = err.message;

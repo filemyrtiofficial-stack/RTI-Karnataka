@@ -147,8 +147,8 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
       let errorMsg = 'Failed to submit appointment. Please try again.';
       if (error instanceof Error) {
         errorMsg = error.message;
-      } else if (error?.message) {
-        errorMsg = error.message;
+      } else if ((error as any)?.message) {
+        errorMsg = (error as any).message;
       }
       setErrorMessage(errorMsg);
     }

@@ -134,10 +134,10 @@ export const StatePage: React.FC = () => {
     "@type": "FAQPage",
     "mainEntity": dataToUse.faqs.map((faq: unknown) => ({
       "@type": "Question",
-      "name": faq.question || faq.q,
+      "name": (faq as any).question || (faq as any).q,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.answer || faq.a
+        "text": (faq as any).answer || (faq as any).a
       }
     }))
   } : null;
