@@ -114,7 +114,7 @@ export const KarnatakaAllServicesSection: React.FC = () => {
               },
               '2': {
                 bullets: ['Complete anonymity', 'Secure filing process', 'Identity protection', 'Professional handling'],
-                price: 'Starts at ₹699'
+                price: 'Starts at ₹399'
               },
               '3': {
                 bullets: ['Expert appeal drafting', 'Legal review', 'Quick submission', 'Appeal tracking'],
