@@ -193,7 +193,7 @@ export const PDFDownloadModal: React.FC<PDFDownloadModalProps> = ({
       if (!downloadSuccess) {
         try {
           // Use dynamic import for Vite
-          const pdfModule = await import(`../../assets/PDF/${pdfPath}`);
+          const pdfModule = await import(`../../assets/PDF/${pdfPath}.pdf`);
           const pdfUrl = pdfModule.default || pdfModule;
           const downloadFilename = departmentName
             .replace(/RTI\s+(Delhi|Telangana|Karnataka)\s+/gi, '')
